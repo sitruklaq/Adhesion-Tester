@@ -66,24 +66,23 @@ Why use manual control?
 
 ### Stepper Motor Software: CRK Motion Creator
 
-This allows you to change the gearing, jog the motor, and write scripts.
+This allows you to change the gearing, jog the motor, and write scripts. [Download Link](https://www.orientalmotor.com/downloads/software.html#)
 
 ![CRK UI](Images/CRK_Motion_Creator.jpg)
 
-[Download Link]: (https://www.orientalmotor.com/downloads/software.html#)
+
 ### Force Gauge Software: MESUR Lite
 
-This allows you to record data and export to excel with a single button.
-[Download Link](https://www.mark-10.com/instruments/software/mesurlite.html)
+This allows you to record data and export to excel with a single button. [Download Link](https://www.mark-10.com/instruments/software/mesurlite.html)
 
 ![MESUR UI](Images/MESUR-Lite.jpg)
 
 ### Running a Manual Test
 
-1. Open Both Mesur Lite and CRK Motion Creator
-2. Enter desired motion commands
-3. Jog the stepper motor to the startg postion
-4. Start recording in MESUR
+1. Open Both MESUR Lite and CRK Motion Creator
+2. Enter desired motion commands such as velocity, acceleration and distance using the calibration above
+3. Jog the stepper motor to the starting postion
+4. Start recording in MESUR (make sure record rate and max data points are correct)
 5. Press start on the motion commands
 6. Allow test to run
 7. Stop recording on MESUR and export data to Excel
