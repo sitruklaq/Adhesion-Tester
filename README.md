@@ -64,24 +64,18 @@ Why use manual control?
 - It is easier to get started
 - Requires no programming
 
-### Stepper Motor Software
-
-Program: CRK Motion Creator 
-
-[CRK MOTION CREATOR DOWNLOAD]: https://www.orientalmotor.com/downloads/software.html#	"CRK MOTION CREATOR"
-
-![CRK UI](Images/CRK Motion Creator.jpg)
+### Stepper Motor Software: CRK Motion Creator
 
 This allows you to change the gearing, jog the motor, and write scripts.
+![CRK UI](Images/CRKMotionCreator.jpg)
 
-### Force Gauge Software
-
-MESUR Lite
-
-[MESUR LITE DOWNLOAD]: https://www.mark-10.com/instruments/software/mesurlite.html
-![MESUR UI](Images/MESUR-Lite.jpg)
+[Download Link]: (https://www.orientalmotor.com/downloads/software.html#)
+### Force Gauge Software: MESUR Lite
 
 This allows you to record data and export to excel with a single button.
+[Download Link](https://www.mark-10.com/instruments/software/mesurlite.html)
+
+![MESUR UI](Images/MESUR-Lite.jpg)
 
 ### Running a Manual Test
 
