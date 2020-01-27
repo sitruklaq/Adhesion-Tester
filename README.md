@@ -1,6 +1,8 @@
 # Hattonlab Adhesion-Tester
 This is a setup designed to measure force resistance such as adhesive strength.
 
+[]: 
+
 Main Components
 
 There are three main components: 
