@@ -3,7 +3,7 @@ This is a setup designed to measure force resistance such as adhesive strength.
 
 ![setup](Images/Setup.png)
 
-Main Components
+## Main Components
 
 There are three main components: 
 
@@ -31,7 +31,7 @@ The force gauge included the following attachment tips:
 
 A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area.
 
-![image of custom attachment](Images/custom attachment.png)
+![image of custom attachment](Images/customattachment.png)
 
 ## Calibration
 
