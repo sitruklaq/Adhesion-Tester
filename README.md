@@ -1,7 +1,7 @@
 # Hattonlab Adhesion-Tester
 This is a setup designed to measure force resistance such as adhesive strength.
 
-[]: 
+![setup](Images/Setup.png)
 
 Main Components
 
@@ -19,55 +19,48 @@ There are three main components:
 - Motor-Stage Couplings (unknown)
 - USB to RS-485 converter
 
-![image of setup] (URL HERE)
-
-- 
-
-# Force Capacity, Resolution, and Accuracy
+## Force Capacity, Resolution, and Accuracy
 
 The Mark-10 M4 25N has a working range of +-25N with a resolution of  0.01N and accurate to +-0.2% of 25N.
 
-# Attachment Tips
+## Attachment Tips
 
 The force gauge included the following attachment tips:
 
-![image of included attachments] (link to picture)
+![image of included attachments](Images/Attachments.png)
 
 A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area.
 
-![image of custom attachment] (link to picture)
+![image of custom attachment](Images/custom attachment.png)
 
-# Calibration
+## Calibration
 
-A correlation between motor steps and distance travelled was used to calibrate the machine:
+A correlation between motor steps (pulses) and distance travelled was used to calibrate the machine:
 
 Using the following controller configuration:
 
 Any change to these settings will require a recalibration. 
 
-At current a step/pulse = X mm
+At current: 1mm = 567pulses
 
 Example: 
 
-Move 50mm at 1mm/s
+```
+Move 50mm at 2mm/s
+move 28350 pulses at 1134pulse/s
+```
 
-move X pulses at Xpulse/s
-
-# Working Principles
-
-The components connect independetly through a serial connection to a computer.
+# Operation Modes
 
 There are two methods of control:
 
-- Manual Control Through Indepent Programs
-- Script Control through MATLAB or others..
+1. **Manual Control**: Motion and force are indepentely controlled through proprietary graphical software (simple)
+2. **Script Control**: Combined control using MATLAB that allows for precise and co-dependent testing (advanced)
 
 ## Manual Control
-
 Manual control uses proprietary software to separately control the force gauge and stepper motor. 
 
 Why use manual control?
-
 - It is easier to get started
 - Requires no programming
 
@@ -77,6 +70,8 @@ Program: CRK Motion Creator
 
 [CRK MOTION CREATOR DOWNLOAD]: https://www.orientalmotor.com/downloads/software.html#	"CRK MOTION CREATOR"
 
+![CRK UI](Images/CRK Motion Creator.jpg)
+
 This allows you to change the gearing, jog the motor, and write scripts.
 
 ### Force Gauge Software
@@ -84,6 +79,7 @@ This allows you to change the gearing, jog the motor, and write scripts.
 MESUR Lite
 
 [MESUR LITE DOWNLOAD]: https://www.mark-10.com/instruments/software/mesurlite.html
+![MESUR UI](Images/MESUR-Lite.jpg)
 
 This allows you to record data and export to excel with a single button.
 
