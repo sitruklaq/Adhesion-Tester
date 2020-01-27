@@ -44,10 +44,9 @@ Any change to these settings will require a recalibration.
 At current: 1mm = 567pulses
 
 Example: 
-
 ```
-Move 50mm at 2mm/s
-move 28350 pulses at 1134pulse/s
+Metric: 50mm at 2mm/s
+Pulses: 28350pulse at 1134pulse/s
 ```
 
 # Operation Modes
