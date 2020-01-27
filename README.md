@@ -1,7 +1,9 @@
 # Hattonlab Adhesion-Tester
-This is a setup designed to measure force resistance such as adhesive strength.
+This is a setup designed to measure force resistance such as adhesive strength
 
-Main Components
+![image of setup](Images/Setup.png)
+
+## Main Components
 
 There are three main components: 
 
@@ -17,19 +19,15 @@ There are three main components:
 - Motor-Stage Couplings (unknown)
 - USB to RS-485 converter
 
-![image of setup] (URL HERE)
-
-- 
-
-# Force Capacity, Resolution, and Accuracy
+## Force Capacity, Resolution, and Accuracy
 
 The Mark-10 M4 25N has a working range of +-25N with a resolution of  0.01N and accurate to +-0.2% of 25N.
 
-# Attachment Tips
+## Attachment Tips
 
 The force gauge included the following attachment tips:
 
-![image of included attachments] (link to picture)
+![image of included attachments](Images/Attachments.png)
 
 A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area.
 
@@ -39,17 +37,18 @@ A custom milled attachment piece has also been created to attach onto the 'flat 
 
 A correlation between motor steps and distance travelled was used to calibrate the machine:
 
-Using the following controller configuration:
+![image of calibration] (calibrationlink)
+
+Using the following controller configuration: **FILL THIS IN**
 
 Any change to these settings will require a recalibration. 
 
-At current a step/pulse = X mm
+At current: 1mm= 567mm
 
 Example: 
+Move 50mm at 2mm/s
 
-Move 50mm at 1mm/s
-
-move X pulses at Xpulse/s
+Move 28350 pulses at 1134 pulse/s
 
 # Working Principles
 
