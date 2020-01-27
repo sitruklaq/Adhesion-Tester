@@ -1,14 +1,13 @@
-# Writing Commands
+# Writing Scripts
 
 The first step is to connect the instruments through serial connection.
 
 An example can be found in the connect_instruments.m file.
 
 ## Stepper Motor Control 
+The full list of commands can be found in Section 13 Command List from the [Controller Operating Manual](Components/HP-P024-4.pdf).
 
-The full list of commands can be found in Section 13 Command List from the Controller Operating Manual.
-
-However, these are some of the most utilized commands
+However, these are some of the most utilized commands:
 
 | Command | Function                                                     |
 | ------- | ------------------------------------------------------------ |
@@ -20,17 +19,20 @@ However, these are some of the most utilized commands
 | PSTOP   | Panic stop: Hard stop, system state after stop is defined by ALMACT |
 | HSTOP   | Hard stop: stop as quickly as possible                       |
 | SSTOP   | Soft stop: controlled deceleration over time                 |
-|         |                                                              |
+
 
 The code does not currently use the followign commands but they might be useful
 
-| Command | Function               |      |
-| ------- | ---------------------- | ---- |
-| MEN     | Wait for Motion to end |      |
-| WAIT    | Time delay (seconds)   |      |
-|         |                        |      |
+| Command | Function               |  
+| ------- | ---------------------- | 
+| MEN     | Wait for Motion to end |   
+| WAIT    | Time delay (seconds)   | 
 
-The absolute position is reset to 0 if unplugged. Therefore,  if using the MA command, it is **EXTREMELY** important to check the starting position before starting a MATLAB script. In future, addition of 'home seeking' would solve this issue. 
+Operations sent to the stepper motor controller are in this syntax "(Command) (Parameter))
+Example:
+to move
+
+**NOTE**:The absolute position is reset to 0 if unplugged. Therefore,  if using the MA command, it is **EXTREMELY** important to check the starting position before starting a MATLAB script. In future, addition of 'home seeking' would solve this issue. 
 
 ## Force Gauge Operation
 
