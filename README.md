@@ -1,5 +1,5 @@
 # Hattonlab Adhesion-Tester
-This is a setup designed to measure force resistance such as adhesive strength.
+This is the repository and working instructions for the linear-force tester in the HATTONLAB at the University of Toronto.
 
 ![setup](Images/Setup.png)
 
@@ -7,7 +7,7 @@ This is a setup designed to measure force resistance such as adhesive strength.
 
 There are three main components: 
 
-- stepper motor / motor controller (Oriental Motor )
+- stepper motor/motor controller (Oriental Motor)
 
 - Force gauge (Mark-10 M4 25N)
 
