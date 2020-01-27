@@ -67,7 +67,7 @@ Why use manual control?
 ### Stepper Motor Software: CRK Motion Creator
 
 This allows you to change the gearing, jog the motor, and write scripts.
-![CRK UI](Images/CRKMotionCreator.jpg)
+![CRK UI](Images/CRK_Motion_Creator.jpg)
 
 [Download Link]: (https://www.orientalmotor.com/downloads/software.html#)
 ### Force Gauge Software: MESUR Lite
