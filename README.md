@@ -3,33 +3,33 @@ This is the repository and working instructions for the linear-force tester in t
 
 ![setup](Images/Setup.png)
 
-## Main Components
-
-There are three main components: 
-
-- stepper motor/motor controller (Oriental Motor)
-
-- Force gauge (Mark-10 M4 25N)
-
-## Accessory Components
-
-- Linear Rail (From an old printer)
-- Breadboard (Newport Aluminum 1ftx1ft Breadboard)
-- Adjustable Backing Plate (Custom Milled)
-- Motor-Stage Couplings (unknown)
-- USB to RS-485 converter
+## Capability
+This device is designed to test various forces under linear displacement. For example: Adhesion, Friction, or Tensile Strength. The device is built upon a modular breadboard which means it can be modified to run many different tests.
 
 ## Force Capacity, Resolution, and Accuracy
 
 The Mark-10 M4 25N has a working range of +-25N with a resolution of  0.01N and accurate to +-0.2% of 25N.
 
-## Attachment Tips
+## Construction & Components
 
+Physical Base:
+- Base breadboard (Newport Aluminum 1ftx1ft Breadboard)
+- Linear Rail and aluminum plate (From an old printer)
+- X,Y fine adjustment & Sample holder (Newport 461)
+- Force Gauge to Linear Rail coupling plate (custom milled)
+- Stepper Motor to Linear Rail coupling (McMaster Carr ???)
+
+Electrical Components:
+- Stepper motor/Motor controller (Oriental Motor)
+- Force gauge and Accessory Kit (Mark-10 M4 25N)
+- USB to RS-485 converter
+
+Attachment Tips: 
 The force gauge included the following attachment tips:
 
 ![image of included attachments](Images/Attachments.png)
 
-A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area.
+A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area (1.2"x1.2").
 
 ![image of custom attachment](Images/customattachment.png)
 
@@ -41,13 +41,18 @@ Using the following controller configuration:
 
 Any change to these settings will require a recalibration. 
 
-At current: 1mm = 567pulses
+At current: 1mm = 566pulses
 
 Example: 
 ```
 Metric: 50mm at 2mm/s
-Pulses: 28350pulse at 1134pulse/s
+Pulses: 28350pulse at 1132pulse/s
 ```
+
+Calibration Steps:
+To Calibrate, Open the Motion Creator App. Measure the distance between two points on the linear rail.
+Create a movement operation for a known number of 'steps/pulses' (e.g. 1000). Measure hte new distance between the two points. Do this for an adequant number of times.
+Plot a Position vs Pulse chart and extract the slope. The slope represents the number of pulses required to move 1mm.
 
 # Operation Modes
 
