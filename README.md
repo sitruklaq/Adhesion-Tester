@@ -55,7 +55,7 @@ Pulses: 28350pulse at 1132pulse/s
 4. Measure the new distance between the two points. Do this for an adequant number of times.
 5. Plot a Position vs Pulse chart and extract the slope. The slope represents the number of pulses required to move 1mm.
 
-<img src="Images/Motor_Calibration.png" alt="Motor_Calibration" style="zoom:50%;" />
+<img src="Images/Motor_Calibration.png" alt="Motor_Calibration" style="zoom:2%;" />
 
 # Operation Modes
 
