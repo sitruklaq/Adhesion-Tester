@@ -1,4 +1,4 @@
-Hattonlab Adhesion-Tester
+# Hattonlab Adhesion-Tester
 
 This is the repository and working instructions for the linear-force tester in the HATTONLAB at the University of Toronto. This device is designed to test various forces under linear displacement. For example: Adhesion, Friction, or Tensile Strength. The device is built upon a modular breadboard which means it can be modified to run many different tests.
 
