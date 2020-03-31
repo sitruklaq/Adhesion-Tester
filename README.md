@@ -1,4 +1,4 @@
-# Hattonlab Adhesion-Tester
+Hattonlab Adhesion-Tester
 
 This is the repository and working instructions for the linear-force tester in the HATTONLAB at the University of Toronto. This device is designed to test various forces under linear displacement. For example: Adhesion, Friction, or Tensile Strength. The device is built upon a modular breadboard which means it can be modified to run many different tests.
 
@@ -55,7 +55,7 @@ Pulses: 28350pulse at 1132pulse/s
 4. Measure the new distance between the two points. Do this for an adequant number of times.
 5. Plot a Position vs Pulse chart and extract the slope. The slope represents the number of pulses required to move 1mm.
 
-<img src="Images/Motor_Calibration.png" alt="Motor_Calibration" style="zoom:2%;" />
+<img src="Images/Motor_Calibration.png" alt="Motor_Calibration" style="zoom:50%;" />
 
 # Operation Modes
 
@@ -64,9 +64,9 @@ There are two methods of control:
 1. **Manual** (basic): Motion and force are indepentely controlled through proprietary graphical software Why manual control?
 
    - It is easier to get started
-   - Requires no knowledge of scripting
+   - Requires no knowledge of scripting or MATLAB
 
-2. **Script** (advanced): MATLAB scriptring that allows for automated, precise, and advanced test parameters (e.g. Force limiting) 
+2. **Script** (advanced): MATLAB scripting that allows for automated, precise, and advanced test parameters (e.g. Force limiting) 
 
    Why script control?
 
@@ -81,14 +81,14 @@ Manual control uses proprietary software to separately control the force gauge a
 
 #### Stepper Motor Software: CRK Motion Creator
 
-This allows you to change the gearing, jog the motor, and write scripts. [Download Link](https://www.orientalmotor.com/downloads/software.html#)
+This allows you to change the gearing, jog the motor, and write scripts for motion. [Download Link](https://www.orientalmotor.com/downloads/software.html#)
 
 ![CRK UI](Images/CRK_Motion_Creator.jpg)
 
 
 #### Force Gauge Software: MESUR Lite
 
-This allows you to record data and export to excel with a single button. [Download Link](https://www.mark-10.com/instruments/software/mesurlite.html)
+This allows you to record force gauge reading and export to Excel. [Download Link](https://www.mark-10.com/instruments/software/mesurlite.html)
 
 ![MESUR UI](Images/MESUR-Lite.jpg)
 
@@ -104,18 +104,22 @@ This allows you to record data and export to excel with a single button. [Downlo
 
 ## 2. Script Control
 
+The scripting program used in this work is MATLAB.
+
 ### Running a Scripted Test
 
 1. Write a script using the commands and examples below:
-2. Run the script
-
-The program used for this work is MATLAB.
+2. Jog the motor into place using CRK Motion Creator
+3. input start position and any other variables into script
+4. Run the script
 
 # Writing Commands
 
+#### Connecting the Instruments
+
 The first step is to connect the instruments through serial connection.
 
-Here is a Matlab function that connects the force gauge and stepper motor.
+This is a Matlab function that connects the force gauge and stepper motor.
 
 ```matlab
 function [force_gauge, step_motor] = connect_instruments()
@@ -211,4 +215,110 @@ resp = fscanf(force_gauge);
 ```
 
 This snippet writes a serial command to the force gauge, asking for the current char. It then reads the reponse and stores the force as 'resp'.
+
+## Sample Test
+
+This is a simple tensile test that retracts the force gauge at a constant rate for a determined distance. Examples in the code section demonstrate more complex functions such as additional states (approaching, dwelling, and retracting), and force control (preloading, test termination at 0 force etc..).
+
+```matlab
+% This is a basic tensile test
+%% CONNECT INSTRUMENTS
+delete(instrfind)
+clear;
+
+force_gauge = serial ('COM6');
+force_gauge.Baudrate = 115200;
+fopen(force_gauge);
+
+step_motor = serial('COM7');
+fopen(step_motor);
+step_motor.RecordDetail = 'Verbose';
+record(step_motor)
+
+%% USER INPUT VARIABLES
+alarm_force = 25; % Force (N) to trigger the alarm
+approach_velocity = 1 % enter approach velocity in mm/s
+retract_velocity = 2 % enter retract velocity in mm/s
+start_position = 115000 % IMPORTANT start position in pulses
+distance = 15 % distance to move in mm
+reading delay = 0.25; % time between collected data points.. 0.25 = 4 reading/s
+%% INITIZIALIZATION
+retract_velocity_pulse = retract_velocity*566;
+retract_distance_pulse = distance*566;
+paused = false;
+pause_time = 0;
+pause_target = 0;
+retract = true;
+test_done = false;
+
+data = zeros (10,1); %Create the data matrix for storing force
+count = 1;
+
+fprintf(step_motor, 'TA 0.1'); %sets ramp times to as quick as possible
+fprintf(step_motor, 'TD 0.1');
+
+%% TEST LOOP
+while(running_test)
+
+% Force Recording
+fprintf(force_gauge,char('?',13,10));
+resp = fscanf(force_gauge);
+current_force = str2double(resp(1:end-3));
+data(count) = current force;
+count = count+1;
+
+% Alarms that quit the program to save the force gauge from overloading
+if current_force > alarm_force 
+test_done=true
+fprintf(step_motor,'ABORT');
+pause (0.01);
+fprintf(step_motor, 'DIS -20000');
+fprintf(step_motor, 'MI');
+disp ('ERROR: FORCE OVERLOAD. RETRACTING AND QUITTING')
+pause (20);
+delete(instrfind)
+end
+if current_force<(-1*alarm_force)
+test_done=true
+fprintf(step_motor,'ABORT');
+pause(0.01);
+fprintf(step_motor, 'DIS 1000');
+fprintf(step_motor, 'MI');
+disp ('ERROR: NEGATIVE FORCE OVERLOAD. PUSHING AND QUITTING')
+delete(instrfind);
+end
+%-- end of alarm section
+
+% Test states. This example includes only a retract state. Add additional states such as approach and dwell for more complex testing
+
+if ~paused && retract
+disp ('Pulling Surfaces Apart')
+pause (0.01);
+fprintf(step_motor, 'VS %s\n', num2str(retract_velocity_pulse));
+pause (0.01);
+fprintf(step_motor, 'VR %s\n', num2str(retract_velocity_pulse));
+pause (0.01);
+fprintf(step_motor, 'MA %s\n', num2str(start_position - retract_distance_pulse ) )
+
+pause_target = (4+ double(distance)/double(retract_velocity))
+retract=false;
+paused=true;
+test_done=true;
+
+elseif ~paused && test_done
+running_test = false;
+
+elseif paused
+pause_time = pause_time+1;
+if pause_time >=pause target
+paused=false;
+pause_time=0;
+end
+end
+pause(reading_delay);
+end
+%% POST TEST DATA WRITING
+writematrix(data, ['data/',datestr(now,'mm-dd-yyyy-HHMM'), 'testname.csv')];
+disp('TEST DONE')
+```
 
