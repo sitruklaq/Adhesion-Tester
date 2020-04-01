@@ -29,7 +29,7 @@ The force gauge included the following attachment tips:
 
 A custom milled attachment piece has also been created to attach onto the 'flat accessory to generate a larger surface area (1.2"x1.2").
 
-<img src="Images/customattachment.png" alt="image of custom attachment" style="zoom:50%;" />
+<img src="Images/customattachment.png" alt="image of custom attachment" style="zoom:20%;" />
 
 ### Calibration
 
